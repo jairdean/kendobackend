@@ -15,6 +15,7 @@ namespace WebAppMVC.Controllers
         // GET: https://localhost:7245/Employee/LoadEmployees
         public ViewResult LoadEmployees()
         {
+            //https://www.youtube.com/watch?v=nHAMDUtiV6w
             List<Employee> myList = new List<Employee>() {
 
                 new Employee{ FullName = "NameA", EmployeeID = "id1", SIN = 11, PhoneNumber = 5612005637, City = "Boynton Beach", Salary = 1111, Country = "USA"},
