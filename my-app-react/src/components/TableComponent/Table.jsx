@@ -4,6 +4,7 @@ import { FaCheckCircle, FaCircle } from 'react-icons/fa'; // Importa los íconos
 import MessageCard from '../MessageCard/MessageCard';
 import './Table.css'; // Archivo CSS para estilos personalizados
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Swal from 'sweetalert2';
 
 const data = [
   {
@@ -48,9 +49,22 @@ const Table = () => {
     setSelectedRow(index);
   };
 
-  const handleReviewClick = (index, type) => {
-    toggleModal(type);
-    setCheckedRows([...checkedRows, index]);
+  const handleReviewClick = (index, item) => {
+    if (!checkedRows.includes(index)) {
+      toggleModal(item.type);
+      setCheckedRows([...checkedRows, index]);
+    }
+    else {
+      showAlert();
+    }
+  };
+
+  const showAlert = () => {
+    Swal.fire({
+      title: 'Error!',
+      text: 'This row is completed',
+      icon: 'error',
+    });
   };
 
   const isChecked = (index) => {
@@ -59,7 +73,7 @@ const Table = () => {
 
   return (
     <div className="container">
-      
+
       <button className="icon-button-text">
         <span className="icon-container">
           <FaCheckCircle className="icon" />
@@ -80,11 +94,11 @@ const Table = () => {
             </span>
           </button>
           <div>
-            <MessageCard item={item} />
+            <MessageCard item={item} index={index} isChecked={isChecked} />
           </div>
           <button
             className="transparent-button"
-            onClick={() => handleReviewClick(index, item.type)}
+            onClick={() => handleReviewClick(index, item)}
           >
             Review {item.type}
           </button>
