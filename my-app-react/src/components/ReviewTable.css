@@ -1,0 +1,29 @@
+.icon-button-text {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0px solid blue; /* Borde azul */
+  color: blue; /* Texto azul */
+  padding: 10px 20px; /* Espaciado interno del botón */
+  font-size: 16px; /* Tamaño de fuente */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor de puntero al pasar sobre el botón */
+  transition: background-color 0.3s, color 0.3s; /* Transición suave para efectos de hover */
+  outline: none; /* Quita el borde de enfoque predeterminado */
+}
+
+
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+.icon {
+  font-size: 20px; /* Tamaño del icono */
+  border-radius: 50%; /* Hace que el icono sea redondo */
+  padding: 8px; /* Espaciado interno del icono */
+  background-color: rgba(0, 0, 255, 0.1); /* Fondo ligeramente azul para el icono */
+}

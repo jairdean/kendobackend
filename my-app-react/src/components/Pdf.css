@@ -1,0 +1,11 @@
+.download-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.pdf-icon {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+}
