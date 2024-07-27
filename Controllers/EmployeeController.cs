@@ -1,6 +1,5 @@
-﻿using BusinessEntities;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebAppMVC.BusinessEntitis;
 
 namespace WebAppMVC.Controllers
 {
@@ -18,7 +17,7 @@ namespace WebAppMVC.Controllers
         {
             var myList = new List<Employee>() {
 
-                new Employee{ FullName = "Furrytail", EmployeeId="id1", SIN=11, PhoneNumber= 123456},
+                new Employee{ FullName = "Furrytail", EmployeeID="id1", SIN=11, PhoneNumber= 123456},
             };
 
             return View();
