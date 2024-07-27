@@ -13,9 +13,9 @@ namespace WebAppMVC.Controllers
         }
 
         // GET: EmployeeController/LoadEmployees
-        public ActionResult LoadEmployees()
+        public List<Employee> LoadEmployees()
         {
-            var myList = new List<Employee>() {
+            List<Employee> myList = new List<Employee>() {
 
                 new Employee{ FullName = "NameA", EmployeeID = "id1", SIN = 11, PhoneNumber = 5612005637, City = "Boynton Beach", Salary = 1111, Country = "USA"},
                 new Employee{ FullName = "NameB", EmployeeID = "id2", SIN = 22, PhoneNumber = 2222005637, City = "Delray Beach", Salary = 111, Country = "UNITED STATES"},
@@ -35,7 +35,7 @@ namespace WebAppMVC.Controllers
                 new Employee{ FullName = "NameQ", EmployeeID = "id16", SIN = 116, PhoneNumber = 5612001616, City = "city qqq", Salary = 111, Country = "AUSTRALIA"},
             };
 
-            return View();
+            return myList;
         }
 
         // GET: EmployeeController/Details/5
