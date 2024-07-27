@@ -1,4 +1,4 @@
-﻿namespace WebAppMVC.BusinessEntitis
+﻿namespace WebAppMVC.Models
 {
     public class Employee
     {
