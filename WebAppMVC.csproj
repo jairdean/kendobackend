@@ -10,4 +10,8 @@
     <PackageReference Include="Telerik.UI.for.AspNet.Core.Trial" Version="2024.2.514" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj" />
+  </ItemGroup>
+
 </Project>
