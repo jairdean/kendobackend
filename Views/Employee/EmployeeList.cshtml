@@ -4,7 +4,7 @@
 @{
 }
 
-@model IEnumerable<Employee>
+@model IEnumerable<EmployeeController>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.)
             {
                 <tr>
                     <td>@item.FullName</td>
@@ -39,4 +39,19 @@
         </tbody>
     </table>
 </body>
+
+
+@* @(Html.Kendo().Grid()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Id);
+        columns.Bound(p => p.Name);
+        columns.Bound(p => p.Age);
+    })
+    .Pageable()
+    .Sortable()
+    .Filterable()
+)
+ *@
 </html>
