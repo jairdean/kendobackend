@@ -12,7 +12,7 @@ namespace WebAppMVC.Controllers
             return View();
         }
 
-        // GET: EmployeeController/LoadEmployees
+        // GET: https://localhost:7245/Employee/LoadEmployees
         public List<Employee> LoadEmployees()
         {
             List<Employee> myList = new List<Employee>() {
