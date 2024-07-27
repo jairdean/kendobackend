@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { FaCheckCircle, FaCircle, FaExclamationCircle } from 'react-icons/fa'; // Importa los íconos que desees
-import MessageCard from './MessageCard';
-import './ReviewTable.css'; // Archivo CSS para estilos personalizados
+import { FaCheckCircle, FaCircle } from 'react-icons/fa'; // Importa los íconos que desees
+import MessageCard from '../MessageCard/MessageCard';
+import './Table.css'; // Archivo CSS para estilos personalizados
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const data = [
@@ -33,7 +33,7 @@ const data = [
   // Agrega más objetos según sea necesario
 ];
 
-const ReviewTable = () => {
+const Table = () => {
   const [modal, setModal] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
   const [selectedRow, setSelectedRow] = useState(null);
@@ -100,4 +100,4 @@ const ReviewTable = () => {
   );
 };
 
-export default ReviewTable;
+export default Table;

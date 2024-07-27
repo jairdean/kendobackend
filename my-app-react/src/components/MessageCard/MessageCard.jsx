@@ -1,6 +1,6 @@
 import React from 'react';
 import './MessageCard.css'; // Archivo CSS para estilos personalizados
-import PdfComponent from './PdfComponent'
+import PdfComponent from '../PdfComponent/PdfComponent'
 
 const MessageCard = ({ item }) => {
     return (

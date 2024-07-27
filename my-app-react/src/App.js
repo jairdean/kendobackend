@@ -1,11 +1,11 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ReviewTable from './components/ReviewTable';
+import Table from './components/TableComponent/Table';
 
 const App = () => {
   return (
     <div className="App">
-      <ReviewTable />
+      <Table />
     </div>
   );
 };
