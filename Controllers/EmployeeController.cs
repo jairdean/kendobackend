@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebAppMVC.BusinessEntitis;
+using WebAppMVC.Models;
 
 namespace WebAppMVC.Controllers
 {
@@ -13,7 +13,7 @@ namespace WebAppMVC.Controllers
         }
 
         // GET: https://localhost:7245/Employee/LoadEmployees
-        public List<Employee> LoadEmployees()
+        public ViewResult LoadEmployees()
         {
             List<Employee> myList = new List<Employee>() {
 
@@ -35,7 +35,7 @@ namespace WebAppMVC.Controllers
                 new Employee{ FullName = "NameQ", EmployeeID = "id16", SIN = 116, PhoneNumber = 5612001616, City = "city qqq", Salary = 111, Country = "AUSTRALIA"},
             };
 
-            return myList;
+            return View(myList);
         }
 
         // GET: EmployeeController/Details/5
