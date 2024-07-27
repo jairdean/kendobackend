@@ -9,3 +9,9 @@
 .pdf-icon {
   margin-right: 8px; /* Espacio entre el icono y el texto */
 }
+
+.centered-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+}
