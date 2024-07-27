@@ -12,6 +12,22 @@
   outline: none; /* Quita el borde de enfoque predeterminado */
 }
 
+/* ButtonStyles.css */
+.transparent-button {
+  background-color: transparent;
+  border: 2px solid blue; /* Borde azul */
+  color: blue; /* Texto azul */
+  padding: 10px 20px; /* Espaciado interno del botón */
+  font-size: 16px; /* Tamaño de fuente */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor de puntero al pasar sobre el botón */
+  transition: background-color 0.3s, color 0.3s; /* Transición suave para efectos de hover */
+}
+
+.transparent-button:hover {
+  background-color: blue; /* Fondo azul en hover */
+  color: white; /* Texto blanco en hover */
+}
 
 
 .icon-container {
