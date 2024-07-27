@@ -18,7 +18,7 @@ namespace WebAppMVC.Controllers
         {
             var myList = new List<Employee>() {
 
-                //FullName = "Joe",
+                new Employee{ FullName = "Furrytail", Age=5 },
             };
             return View();
         }
