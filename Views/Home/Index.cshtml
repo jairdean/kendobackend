@@ -3,13 +3,94 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Employee List</h1>
 </div>
 
+@* Components *@
+@* https://demos.telerik.com/aspnet-core/ *@
+
 <div class="text-center">
-    <h2>Telerik UI DatePicker for ASP.NET Core</h2>
-    @(Html.Kendo().DatePicker()
-        .Name("my-picker")
+    @(
+        Html.Kendo().Grid<WebAppMVC.Models.EmployeeViewModel>()
+            .Name("grid")
+            .Columns(columns =>
+            {
+            columns.Bound(p => p.FullName).Width(120).Title("Full Name").ClientTemplate(
+                @"<div class='full-name'>
+            <span class='avatar'>#: getInitials(FullName) #</span>
+            <div class='name-details'>
+            <div class='full-name-text'>#: FullName #</div>
+            <div class='employee-id'>#: EmployeeID #</div>
+            </div>
+            </div>").Width(300);
+            columns.Bound(p => p.EmployeeID).Width(120).Title("Employee ID");
+            columns.Bound(p => p.SIN).Width(120).Title("SIN");
+            columns.Bound(p => p.PhoneNumber).Width(120).Title("Phone Number");
+            columns.Bound(p => p.City).Width(120).Title("City");
+            columns.Bound(p => p.Salary).Width(120).Title("Salary");
+            columns.Bound(p => p.Country).Width(120).Title("Country");
+            //columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+        })
+        //.ToolBar(toolbar => toolbar.Create())
+        //.Editable(editable => editable.Mode(GridEditMode.InLine))
+        .Pageable()
+        .Sortable()
+        .Scrollable()
+        //.ClientRowTemplateHandler("rowTemplate")
+        .HtmlAttributes(new { style = "height:500px;" })
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            //.PageSize(10)
+            .Model(model => model.Id(p => p.EmployeeID))
+            .Read(read => read.Action("Grid_Read", "Employee"))
+        )
         )
 </div>
+
+<style>
+    .full-name {
+        display: flex;
+        align-items: center;
+        height: 100%; 
+    }
+
+    .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px; 
+        height: 50px; 
+        background-color: #007bff; 
+        color: white;
+        border-radius: 50%; 
+        font-weight: bold;
+        margin-right: 10px; 
+        font-size: 20px; 
+    }
+
+    .name-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .full-name-text, .employee-id {
+        margin: 0;
+    }
+
+    .employee-id {
+        margin-top: 5px;
+    }
+</style>
+
+<script>
+    function getInitials(fullName) {
+        var words = fullName.split(' ');
+        var initials = '';
+        for (var i = 0; i < Math.min(2, words.length); i++) {
+            initials += words[i].charAt(0).toUpperCase();
+        }
+        return initials;
+    }
+</script>
+

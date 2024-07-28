@@ -1,6 +1,11 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add Kendo UI services to the services container. [https://docs.telerik.com/aspnet-core/getting-started/first-steps#adding-the-telerik-nuget-feed-for-trial-license-users]
+
+//Cannot Get Any Data to Load in Grid
+//https://docs.telerik.com/kendo-ui/knowledge-base/grid-is-not-showing-data
+builder.Services.AddMvc()
+            .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddKendo();
 
 // Add services to the container.

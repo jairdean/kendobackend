@@ -1,6 +1,6 @@
 ﻿namespace WebAppMVC.Models
 {
-    public class Employee
+    public class EmployeeViewModel
     {
         public string FullName { get; set; }
         public string EmployeeID { get; set; }
