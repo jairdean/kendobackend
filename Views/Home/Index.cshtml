@@ -9,23 +9,27 @@
 @* Components *@
 @* https://demos.telerik.com/aspnet-core/ *@
 
+
+<div class="text-center">
+    xxxx employees from hhhhh
+</div>
 <div class="text-center">
     @(
         Html.Kendo().Grid<WebAppMVC.Models.EmployeeViewModel>()
-            .Name("grid")
-            .Columns(columns =>
-            {
-            columns.Bound(p => p.FullName).Width(120).Title("Full Name").ClientTemplate(
-                @"<div class='full-name'>
-            <span class='avatar'>#: getInitials(FullName) #</span>
-            <div class='name-details'>
-            <div class='full-name-text'>#: FullName #</div>
-            <div class='employee-id'>#: EmployeeID #</div>
-            </div>
-            </div>").Width(300);
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.FullName).Title("Full Name").ClientTemplate(
+        @"<div class='full-name'>
+    <span class='avatar'>#: getInitials(FullName) #</span>
+    <div class='name-details'>
+    <div class='full-name-text'>#: FullName #</div>
+    <div class='employee-id'>#: EmployeeID #</div>
+    </div>
+    </div>").Width(300);
             columns.Bound(p => p.EmployeeID).Width(120).Title("Employee ID");
             columns.Bound(p => p.SIN).Width(120).Title("SIN");
-            columns.Bound(p => p.PhoneNumber).Width(120).Title("Phone Number");
+            columns.Bound(p => p.PhoneNumber).Width(120).Title("Phone Number").ClientTemplate("#= changeMyTel(PhoneNumber) #");
             columns.Bound(p => p.City).Width(120).Title("City");
             columns.Bound(p => p.Salary).Width(120).Title("Salary");
             columns.Bound(p => p.Country).Width(120).Title("Country");
@@ -35,14 +39,15 @@
         //.Editable(editable => editable.Mode(GridEditMode.InLine))
         .Pageable()
         .Sortable()
+
         .Scrollable()
         //.ClientRowTemplateHandler("rowTemplate")
         .HtmlAttributes(new { style = "height:500px;" })
         .DataSource(dataSource => dataSource
-            .Ajax()
-            //.PageSize(10)
-            .Model(model => model.Id(p => p.EmployeeID))
-            .Read(read => read.Action("Grid_Read", "Employee"))
+        .Ajax()
+        //.PageSize(10)
+        .Model(model => model.Id(p => p.EmployeeID))
+        .Read(read => read.Action("Grid_Read", "Employee"))
         )
         )
 </div>
@@ -51,21 +56,21 @@
     .full-name {
         display: flex;
         align-items: center;
-        height: 100%; 
+        height: 100%;
     }
 
     .avatar {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 50px; 
-        height: 50px; 
-        background-color: #007bff; 
+        width: 50px;
+        height: 50px;
+        background-color: #007bff;
         color: white;
-        border-radius: 50%; 
+        border-radius: 50%;
         font-weight: bold;
-        margin-right: 10px; 
-        font-size: 20px; 
+        margin-right: 10px;
+        font-size: 20px;
     }
 
     .name-details {
@@ -91,6 +96,12 @@
             initials += words[i].charAt(0).toUpperCase();
         }
         return initials;
+    }
+
+    function changeMyTel(phone) {
+        if (!phone) return "vacio";
+        phone = phone.toString();
+        return phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
     }
 </script>
 
