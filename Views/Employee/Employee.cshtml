@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Employee List";
+}
+
+<div class="alert alert-primary" role="alert">
+    @ViewBag.EmployeeCount employees from Mississauga
+</div>
+
+<div class="text-center">
+    @(
+        Html.Kendo().Grid<WebAppMVC.Models.EmployeeViewModel>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.FullName).Title("Full Name").ClientTemplate(
+                @"<div class='full-name'>
+                    <span class='avatar'>#: getInitials(FullName) #</span>
+                    <div class='name-details'>
+                    <div class='full-name-text'>#: FullName #</div>
+                    <div class='employee-id'>#: EmployeeID #</div>
+                    </div>
+                </div>").Width(300);
+            columns.Bound(p => p.EmployeeID).Width(120).Title("Employee ID");
+            columns.Bound(p => p.City).Width(120).Title("City");
+            columns.Bound(p => p.PhoneNumber).Width(120).Title("Phone Number").ClientTemplate("#= changeMyTel(PhoneNumber) #");
+            columns.Bound(p => p.SIN).ClientTemplate("#= formatSIN(SIN) #").Width(120).Title("SIN");
+            columns.Bound(p => p.Salary).Width(120).Title("Salary").Format("{0:C2}");
+            columns.Bound(p => p.Country).Width(120).Title("Country").ClientTemplate(
+            @"<div style='color: #: Country == ""CANADA"" ? ""red"" : ""black"" #;'>#: Country #</div>"
+            );
+            //columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+        })
+        //.ToolBar(toolbar => toolbar.Create())
+        //.Editable(editable => editable.Mode(GridEditMode.InLine))
+        .Pageable()
+        .Sortable()
+
+        .Scrollable()
+        //.ClientRowTemplateHandler("rowTemplate")
+        .HtmlAttributes(new { style = "height:500px;" })
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        //.PageSize(10)
+        .Model(model => model.Id(p => p.EmployeeID))
+        .Read(read => read.Action("Grid_Read", "Employee"))
+        )
+        )
+</div>
+
+<style>
+    .full-name {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-right: 10px;
+        font-size: 20px;
+    }
+
+    .name-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .full-name-text, .employee-id {
+        margin: 0;
+    }
+
+    .employee-id {
+        margin-top: 5px;
+    }
+</style>
+
+<script>
+    function getInitials(fullName) {
+        var words = fullName.split(' ');
+        var initials = '';
+        for (var i = 0; i < Math.min(2, words.length); i++) {
+            initials += words[i].charAt(0).toUpperCase();
+        }
+        return initials;
+    }
+
+    function changeMyTel(phone) {
+        if (!phone) return "vacio";
+        phone = phone.toString();
+        return phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+    }
+
+    function formatSIN(sin) {
+        if (sin) {
+            var sinStr = sin.toString();
+            return sinStr.replace(/(\d{3})(\d{3})(\d{3})/, '$1-$2-$3');
+        }
+        return sin;
+    }
+</script>
