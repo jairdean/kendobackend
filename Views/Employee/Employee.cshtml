@@ -21,7 +21,9 @@
                     </div>
                 </div>").Width(300);
             columns.Bound(p => p.EmployeeID).Width(120).Title("Employee ID");
-            columns.Bound(p => p.City).Width(120).Title("City");
+            columns.Bound(p => p.City).Width(120).Title("City").ClientTemplate(
+            @"<span class='btn #: City == ""Mississauga"" ? ""btn-primary"" : """" #'>#: City #</span>"
+            );
             columns.Bound(p => p.PhoneNumber).Width(120).Title("Phone Number").ClientTemplate("#= changeMyTel(PhoneNumber) #");
             columns.Bound(p => p.SIN).ClientTemplate("#= formatSIN(SIN) #").Width(120).Title("SIN");
             columns.Bound(p => p.Salary).Width(120).Title("Salary").Format("{0:C2}");
@@ -40,7 +42,7 @@
         .HtmlAttributes(new { style = "height:500px;" })
         .DataSource(dataSource => dataSource
         .Ajax()
-        //.PageSize(10)
+        .PageSize(20)
         .Model(model => model.Id(p => p.EmployeeID))
         .Read(read => read.Action("Grid_Read", "Employee"))
         )
